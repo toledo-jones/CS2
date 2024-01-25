@@ -6,34 +6,51 @@
 """"
    Description:
       A service record contains details about the customer and boat.
+   
    Functions:
-      ???
+      printForm
+      getInvoiceNumber
+      getServiceData
+      getBoat
+      getServiceType
+      getTotalCharges
+      setInvoiceNumber
+      setServiceData
+      setBoat
+      setServiceType
+      setTotalCharges
+      
    Constants:
-      ???    
+      None    
 
 """
 
-__author__ = "???"
+__author__ = "Cody Bogausch"
 __version__ = "1.0"
 
 class BoatServiceRecord:
     
     def __init__(self, theInvoiceNumber, theServiceDate, theServiceType, theTotalCharges, aBoat):
-        # invoke assessors to populate attributes
+        # Invoke assessors to populate attributes
         self.setInvoiceNumber(theInvoiceNumber)
         self.setServiceDate(theServiceDate)
         self.setServiceType(theServiceType)
         self.setTotalChargers(theTotalCharges)
+        
+        # Associate this service record with the boat
         aBoat.addServiceRecord(self)
+        
+        # Then set the boat with the service record added
         self.setBoat(aBoat)
         
         
     def printForm(self):
-            print("The invoice number is: " + str(self.getInvoiceNumber()))
-            print("The service date is is: " + str(self.getServiceDate()))
-            print("The service type is: " + str(self.getServiceType()))
-            print("The boat information is: " + str(self.getBoat().tellAboutSelf()))         
-            print("The total charge is: " + str(self.getTotalCharges()))
+        """ Print all attributes associated with this service record """
+        print("The invoice number is: " + str(self.getInvoiceNumber()))
+        print("The service date is is: " + str(self.getServiceDate()))
+        print("The service type is: " + str(self.getServiceType()))
+        print("The boat information is: " + str(self.getBoat().tellAboutSelf()))         
+        print("The total charge is: " + str(self.getTotalCharges()))
 		
     def getInvoiceNumber(self):    
         return self._invoiceNumber    

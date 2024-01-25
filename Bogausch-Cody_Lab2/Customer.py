@@ -24,17 +24,14 @@ __version__ = "1.0"
 
 
 class Customer:
-
-	# constructor with parameters
     def __init__(self, aName, anAddress, aPhoneNo):
-        # invoke accessors to populate attributes
+        # Populate attributes
         self.setName(aName)
         self.setAddress(anAddress)
         self.setPhoneNo(aPhoneNo)
-        # initially no Boat
+        # No boat at initialization. The association happens in the actual Boat object
         self.setBoat(None)				 
 	
-    # set accessors
     def setName(self, newName):
         self._name = newName
         
@@ -47,7 +44,6 @@ class Customer:
     def setBoat(self, aBoat):
         self._boat = aBoat
 
-    # get accessors
     def getName(self):
         return self._name
 

@@ -7,10 +7,25 @@
 """"
    Description:
       A boat is owned by a customer and has related details attached.
+   
    Functions:
-      ???
+      tellAboutSelf
+      assignBoatToCustomer
+      addServiceRecord
+      printRecord
+      setStateRegistrationNo
+      setLength
+      setManufacturer
+      setYear
+      setCustomer
+      getStateRegistrationNo
+      getLength
+      getManufacturer
+      getYear
+      getCustomer
+
    Constants:
-      ??? 
+      None 
 """
     
     # Description:
@@ -25,18 +40,21 @@ __version__ = "1.0"
 
 class Boat:
     def __init__(self, aStateRegistrationNo, aLength, aManufacturer, aYear, aCustomer):
-    
+        # Constructor. Set Class Attributes
         self.setStateRegistrationNo(aStateRegistrationNo)
         self.setLength(aLength)
         self.setManufacturer(aManufacturer)
         self.setYear(aYear)
         self.setCustomer(aCustomer)
-        # association between boat and customer done here
+        # Assignment between customer and boat 
         self.assignBoatToCustomer(aCustomer)
-        self._serviceRecord = []     
+        self._serviceRecord = []
     
     def tellAboutSelf(self):
-    
+        """ Description: Report the attributes of the boat
+        INPUT: None
+        OUTPUT: Print each attribute of the boat
+        """
         boatDetails = "I am a Boat" +\
             " state reg number " + str(self.getStateRegistrationNo()) +\
             " length " + str(self.getLength()) +\
@@ -48,15 +66,24 @@ class Boat:
         return boatDetails + customerDetails
       
     def assignBoatToCustomer(self, aCustomer):
+        """ Description: associate this boat with the correct customer
+        INPUT: Customer() object
+        OUTPUT: None
+        """
         aCustomer.setBoat(self)
     
     def addServiceRecord(self, record):
         self._serviceRecord.append(record)
       
     def printRecord(self):
+        """ Description: 
+        INPUT: Customer() object
+        OUTPUT: None
+        """
         service_record = self.getServiceRecord()
-        if self.getServiceRecord():
+        if not self.getServiceRecord():
             print("No service record")
+            return None
         for record in service_record:
             record.printForm()
             
