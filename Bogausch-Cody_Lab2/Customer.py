@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-#!/usr/bin/env python3
+# !/usr/bin/env python3
 
 """"
    Description:
@@ -30,11 +30,11 @@ class Customer:
         self.setAddress(anAddress)
         self.setPhoneNo(aPhoneNo)
         # No boat at initialization. The association happens in the actual Boat object
-        self.setBoat(None)				 
-	
+        self.setBoat(None)
+
     def setName(self, newName):
         self._name = newName
-        
+
     def setAddress(self, newAddress):
         self._address = newAddress
 
@@ -52,6 +52,6 @@ class Customer:
 
     def getPhoneNo(self):
         return self._phoneNumber
-        
+
     def getBoat(self):
         return self._boat
