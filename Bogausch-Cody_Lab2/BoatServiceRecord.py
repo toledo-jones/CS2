@@ -28,11 +28,12 @@
 __author__ = "Cody Bogausch"
 __version__ = "1.0"
 
+from Boat import Boat
+from Customer import Customer
 
 class BoatServiceRecord:
-
     def __init__(self, theInvoiceNumber, theServiceDate, theServiceType, theTotalCharges, aBoat):
-        # Invoke assessors to populate attributes
+        # Invoke mutators to populate attributes
         self.setInvoiceNumber(theInvoiceNumber)
         self.setServiceDate(theServiceDate)
         self.setServiceType(theServiceType)
@@ -52,16 +53,32 @@ class BoatServiceRecord:
         print("The boat information is: " + str(self.getBoat().tellAboutSelf()))
         print("The total charge is: " + str(self.getTotalCharges()))
 
-    def getInvoiceNumber(self):
+    def getInvoiceNumber(self) -> int:
+        """
+        Get invoice number
+        :returns: invoice number associated with this service record
+        """
         return self._invoiceNumber
 
-    def getServiceDate(self):
+    def getServiceDate(self) -> str:
+        """
+        Get service date associated with the service record
+        :returns: service date
+        """
         return self._serviceDate
 
-    def getBoat(self):
+    def getBoat(self) -> Boat:
+        """
+        Get boat associated with this service record
+        :returns: associated boat
+        """
         return self._boat
 
-    def getServiceType(self):
+    def getServiceType(self) -> str:
+        """ 
+        Get service type, type of service rendered
+        :returns: type of service 
+        """
         return self._serviceType
 
     def getTotalCharges(self) -> float:
@@ -86,11 +103,24 @@ class BoatServiceRecord:
         self._serviceDate = theServiceDate
 
     def setServiceType(self, theServiceType: str) -> None:
-
+        """ 
+        Set service type, type of service rendered
+        :param theServiceType: service rendered
+        :returns: None
+        """
         self._serviceType = theServiceType
 
-    def setTotalChargers(self, theTotalCharges):
+    def setTotalChargers(self, theTotalCharges: float) -> None:
+        """ 
+        Set total charges, cost of service
+        :param theTotalCharges: service cost
+        :returns: None
+        """
         self._totalCharges = theTotalCharges
 
-    def setBoat(self, aBoat):
+    def setBoat(self, aBoat: Boat):
+        """
+        Associate a boat to this service record
+        :param aBoat: The boat which is associated with this service record
+        """
         self._boat = aBoat

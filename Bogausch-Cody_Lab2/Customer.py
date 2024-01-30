@@ -22,9 +22,13 @@
 __author__ = "Cody Bogausch"
 __version__ = "1.0"
 
+from Boat import *
 
 class Customer:
-    def __init__(self, aName, anAddress, aPhoneNo):
+    def __init__(self,
+                 aName: str,
+                 anAddress: str,
+                 aPhoneNo: str):
         # Populate attributes
         self.setName(aName)
         self.setAddress(anAddress)
@@ -32,26 +36,26 @@ class Customer:
         # No boat at initialization. The association happens in the actual Boat object
         self.setBoat(None)
 
-    def setName(self, newName):
+    def setName(self, newName) -> :
         self._name = newName
 
-    def setAddress(self, newAddress):
+    def setAddress(self, newAddress) -> :
         self._address = newAddress
 
     def setPhoneNo(self, newPhoneNo):
         self._phoneNumber = newPhoneNo
 
-    def setBoat(self, aBoat):
+    def setBoat(self, aBoat) -> :
         self._boat = aBoat
 
-    def getName(self):
+    def getName(self) -> :
         return self._name
 
-    def getAddress(self):
+    def getAddress(self) -> :
         return self._address
 
-    def getPhoneNo(self):
+    def getPhoneNo(self) -> :
         return self._phoneNumber
 
-    def getBoat(self):
+    def getBoat(self) -> :
         return self._boat
