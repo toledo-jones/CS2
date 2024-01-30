@@ -30,6 +30,7 @@ def main():
     # Entry point
     print("Spam Spammer v 1.00")
     execute_function_n_times(print_twice, 'data', n=2)
+    do_four(print_twice, "spam")
 
 
 def execute_function_n_times(function, *args, n: int):  # do_twice()
@@ -54,3 +55,5 @@ def do_four(function, args):
 # If this script is executed run as main
 if __name__ == '__main__':
     main()
+
+

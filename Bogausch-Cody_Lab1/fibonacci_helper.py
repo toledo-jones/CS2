@@ -17,7 +17,11 @@ def get_fibonacci_above_value(value):
     # Initialize the sequence
     sequence = [0, 1]
 
+    sum = 0
     while sum < value:
+        # Debug
+        print(sequence)
+
         # Sum is the last two variables in the list
         sum = sequence[-1] + sequence[-2]
 
