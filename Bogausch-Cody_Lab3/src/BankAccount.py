@@ -63,7 +63,12 @@ class BankAccount:
         # use setBalance to change balance of account to calculated value.
         self.setBalance(new_balance)
 
+        return True
+
     # Gets the current balance of the bank account.
+    # This is an exact balance. Rounding is intentionally left out here because banks need precise values
+    # When calculating account balances.
+    # TODO: Consider implementing a getBalanceFormatted() method
     # INPUT:
     #    None
     # OUTPUT

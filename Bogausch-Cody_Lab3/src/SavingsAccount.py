@@ -7,7 +7,8 @@
    Description:
       A bank account can be of type Savings Account.
    Functions:
-      ???
+      __init__: constructs a new savings account
+      addInterest: add interest to account based on balance and amount
    Constants:
       None
 """
@@ -26,7 +27,7 @@ class SavingsAccount(BankAccount):
     #    rate (float): interest rate for this savings account
     #    initialBalance (float): starting balance of this account. Default to 0.0
     # OUTPUT
-    #    ???
+    #    None
     def __init__(self, rate, initialBalance=0.0):
         super().__init__(initialBalance)
         self.setRate(rate)
@@ -52,14 +53,14 @@ class SavingsAccount(BankAccount):
     # INPUT:
     #    amount: amount to withdraw
     # OUTPUT
-    #    ???
+    #    None
     def withdraw(self, amount):
         # Only permit a legal withdraw
         if self.getBalance() - amount <= self.minimumBalance:
             # Withdraw will bring account below minimum.
-            return
+            print("Insufficient Funds. Cannot perform withdraw.")
+            return False
 
-        # Happy path...
         # We can allow the withdraw
         super().withdraw(amount)
 
