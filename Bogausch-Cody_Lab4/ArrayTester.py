@@ -40,14 +40,17 @@ print("Traversing the array")
 for item in myArray:
     print(item)
 
+print("Create a new array with same data as the original:")
 # Creates a new array with the same data as the original,
 newArray = myArray[:]
 print(newArray)
 
-#sets the old array variable to the new array object.
+print("Sets the old array variable to new array object:")
+# Sets the old array variable to the new array object.
 myArray = newArray
 print(myArray)
 
+print("Insert the number 11 in the array object at index 2:")
 # Inserts the number 11 in the new array object in position 2.
 newArray[2] = 11
 print(newArray)
@@ -57,13 +60,14 @@ grid = Array(10, 0)
 for item in range(len(grid)):
     grid[item] = Array(10, 0)
 
-# fill it with the sequence 1, 2, 3…and so on.
+# Fill it with the sequence 1, 2, 3…and so on.
 count = 0
 for column in range(10):
     for row in range(10):
         count += 1
         grid[column][row] = count
-        
+
+print("Here is the filled in grid:")
 # Print out the filled grid.
 for column in grid:
     print(str(column))

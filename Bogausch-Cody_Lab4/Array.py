@@ -12,15 +12,18 @@
     The fill value is None by default.
 
     Fuctions:
-        ???
+        __len__: length of the array
+        __str__: a string representation of the array
+        __iter__: traverse over the array as an iterable
+        __getitem__: subscript operator for access at index 
+        __setitem: subscript item assignemnt at index
+
     Constants:
-        ???
+        None
 """
 
 __author__ = "Cody Bogausch"
 __version__ = "1.0"
-
-# REMEMBER TO PUT IN DETAILED COMMENTS!
 
 class Array(object):
     """Represents an array."""
