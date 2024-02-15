@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
+__author__ = "Cody Bogausch"
+__version__ = "1.0"
+
 ## File: LinkedSeq.py, based on DoubleLinkedSeq from edu.colorado.collections
 ## This is an assignment for students to complete
 
@@ -17,9 +20,10 @@
 #
 # ChangeLog: Michael Main 
 #            C. Mikijanic
+#            Cody Bogausch
 #
 # Version
-#   January 1, 2024
+#   February 15, 2024
 #
 ##############################################################################/
 class Node:
@@ -66,7 +70,7 @@ class Node:
    ##/
    def addNodeAfter(self, item):   
       # Set the link to the item argument
-      self.link = item
+      self.link = Node(item, self.link)
 
    
    
@@ -108,31 +112,36 @@ class Node:
    #   Indicates that there is insufficient memory for the new list.   
    ##/ 
    def listCopy(source):
-      # I'm assuming this is wrong but I don't really know why? 
+      # Handle the empty list condition
+      if not source:
+         
+         # Head is none so this copy returns None
+         return None
       
-      # Create a blank list
-      copy = list()
+      # Create cursor to point to different nodes
+      cursor = source
+      
+      # Store the head
+      head = Node(cursor.data, cursor.link)
       
       # Recursively searh nodes:
-      while True:   
+      while cursor:   
+         # Point to the next 
+         cursor = cursor.link
          
-         # Return the head reference for the copy if the source is blank 
-         if source is None:
-            
-            # If the copy has been filled we return the head reference
-            try:
-               return copy[0]
-            
-            # If the copy is empty just return the None source
-            except IndexError:
-               return source
+         # Finished copying, cursor is None
+         if not cursor:
+            # Return stored head from earlier
+            return head
+
+         # Copy the Node that the cursor points to
+         cursor = Node(cursor.data, cursor.link)
+
          
-         # Copy the current node
-         copy.append(source)
-         
-         # Set the source to be the next link
-         source = source.getLink()
-      
+
+
+
+
       
    
    
@@ -166,7 +175,20 @@ class Node:
    #   A wrong answer occurs for lists longer than the max value of integers in Python.     
    ##/   
    def listLength(self, head):
-      "This function is not completed..."
+      # Create cursor to point to the node we need to reference
+      cursor = head
+      
+      # Counts the length of the list
+      list_length = 0
+      
+      # While the cursor points to something (not None)
+      while cursor:
+         
+         # Increment length counter
+         answer += 1
+         
+         # Set cursor to the next link the sequence
+         cursor = cursor.link
    
    
 
