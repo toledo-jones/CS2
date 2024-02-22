@@ -48,6 +48,7 @@ class Node:
    #   This node contains the specified data and link to the next node.
    ##/   
    def __init__(self, initialData, initialLink=None):
+      
       # Store the data that this node will contain
       self.data = initialData
 
@@ -69,8 +70,12 @@ class Node:
    #   Node. 
    ##/
    def addNodeAfter(self, item):   
+      
+      
       # Set the link to the item argument
-      self.link = Node(item, self.link)
+      self.link = Node(item, self.link) 
+
+      
 
    
    
@@ -81,6 +86,7 @@ class Node:
    #   the data from this node
    ##/
    def getData(self):   
+      
       # The data from this node
       return self.data
    
@@ -94,6 +100,7 @@ class Node:
    #   is nothing after this node)
    ##/
    def getLink(self):
+      
       # Link to the next node in the chain
       return self.link                                               
     
@@ -112,40 +119,26 @@ class Node:
    #   Indicates that there is insufficient memory for the new list.   
    ##/ 
    def listCopy(source):
+      
       # Handle the empty list condition
-      if not source:
+      if source is None:
          
          # Head is none so this copy returns None
          return None
       
-      # Create cursor to point to different nodes
-      cursor = source
-      
       # Store the head
-      head = Node(cursor.data, cursor.link)
+      copyHead = Node(source.data, None)
+      copyTail = copyHead
+
+      # Recursively copy nodes:
+      while source is not None:   
+         source = source.getLink()
+         copyTail.addNodeAfter(source.data)
+         copyTail = copyTail.getLink()
       
-      # Recursively searh nodes:
-      while cursor:   
-         # Point to the next 
-         cursor = cursor.link
-         
-         # Finished copying, cursor is None
-         if not cursor:
-            # Return stored head from earlier
-            return head
-
-         # Copy the Node that the cursor points to
-         cursor = Node(cursor.data, cursor.link)
-
-         
+      return copyHead
 
 
-
-
-      
-   
-   
-   
    ###
    # Copy a list, returning both a head and tail reference for the copy.
    # Argument: source
@@ -160,9 +153,15 @@ class Node:
    #   Indicates that there is insufficient memory for the new list.   
    ##/
    def listCopyWithTail(source):
-      "This function is not completed..."
-   
-   
+      
+      # Initialize head and tail variable 
+      head_and_tail_copy = [None, None]
+      
+      if source is None:
+         return head_and_tail_copy
+
+      head = Node(source.data, None)
+
    
    ###
    # Compute the number of nodes in a linked list.
@@ -301,7 +300,9 @@ class Node:
    #   this node.
    ##/
    def setLink(self, newLink):             
-      "This function is not completed..."
+      self.link = newLink
    
 
-           
+   # # Called when the node is printed directly to the console
+   # def __repr__(self):
+   #    return f"<Node: data = {str(self.data)}> -> {self.link}" 
