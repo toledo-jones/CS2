@@ -131,7 +131,7 @@ class Node:
       copyTail = copyHead
 
       # Recursively copy nodes:
-      while source is not None:   
+      while source.link is not None:   
          source = source.getLink()
          copyTail.addNodeAfter(source.data)
          copyTail = copyTail.getLink()
