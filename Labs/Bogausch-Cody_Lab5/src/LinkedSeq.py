@@ -34,10 +34,16 @@ import copy
 from Node import Node
 
 __author__ = "Cody Bogausch"
-__version__ = "1.0"
+__version__ = "0.999999989"
 
 
 class LinkedSeq:
+    """
+
+    Ran out of time, unfortunately.
+
+
+    """
 
     ###
     # Initialize an empty sequence.
@@ -46,9 +52,9 @@ class LinkedSeq:
     #   This sequence is empty.
     ###   
     def __init__(self):
-        self.head: Node = Node(None)
-        self.currentElement: Node or None = None
-        self.manyNodes: int = 1
+        self.head: (Node or None) = None
+        self.currentElement: (Node or None) = None
+        self.manyNodes: int = 0
 
     ###
     # Add a new element to this sequence, after the current element. 
@@ -72,7 +78,7 @@ class LinkedSeq:
         try:
 
             # Sequence has a current element
-            if self.currentElement:
+            if self.isCurrent():
 
                 # Create a node with the data element after the current node
                 self.currentElement.addNodeAfter(element)
@@ -82,12 +88,19 @@ class LinkedSeq:
 
             # Sequence does not have a current element
             else:
-                # TODO: This may not apply to all cases where current element is None. Check back later.
+                node = Node(element)
+
+                if self.head is not None:
+                    node.setLink(self.head)
+
                 # Head data becomes data element
-                self.head.setData(element)
+                self.head = node
 
                 # Current element becomes head
                 self.currentElement = self.head
+
+            # Increment node count
+            self.manyNodes += 1
 
         # Insufficient memory condition
         except MemoryError as e:
@@ -107,7 +120,41 @@ class LinkedSeq:
     #   Indicates insufficient memory for a new node.
     ##/
     def addBefore(self, element):
-        "This function is not completed..."
+        try:
+            #
+            if self.isCurrent():
+
+                #
+                cursor = self.head
+
+                #
+                while cursor.link is not self.currentElement:
+                    #
+                    cursor = cursor.link
+
+                #
+                cursor.addNodeAfter(element)
+
+                #
+                self.currentElement = cursor.link
+            #
+            else:
+
+                #
+                new_node = Node(element, self.head)
+
+                #
+                self.head = new_node
+
+                #
+                self.currentElement = new_node
+
+            #
+            self.manyNodes += 1
+
+        except AttributeError:
+            self.head = Node(element)
+            self.currentElement = self.head
 
     ###
     # Place the contents of another sequence at the end of this sequence.
@@ -125,7 +172,21 @@ class LinkedSeq:
     #   Indicates insufficient memory to increase the size of this sequence.
     ##/
     def addAll(self, addend):
-        "This function is not completed..."
+
+        #
+        length = self.manyNodes
+
+        #
+        tail = self.head.listPosition(length)
+
+        #
+        tail.setLink(addend.head)
+
+        #
+        added_length = addend.head.listLength(addend.head)
+
+        #
+        self.manyNodes += added_length
 
     ###
     # Move forward, so that the current element is now the next element in
@@ -144,10 +205,21 @@ class LinkedSeq:
     ##/
     def advance(self):
 
+        #
         try:
-            "This function is not completed..."
-        except:
+
+            #
+            self.currentElement = self.currentElement.getLink()
+
+        #
+        except TypeError:
+
+            #
             print("There is no current element, so advance may not be called.")
+
+        except AttributeError:
+
+            self.currentElement = None
 
     ###
     # Generate a copy of this sequence.
@@ -161,17 +233,22 @@ class LinkedSeq:
     ##/ 
     def clone(self):
 
+        #
         holder = None
 
+        #
         try:
 
+            #
             holder = copy.deepcopy(self)
 
-        except:
+        #
+        except MemoryError:
+
+            #
             print("Deep copy could not be created")
 
-        "This function is not completed..."
-
+        #
         return holder
 
     ###
@@ -191,14 +268,30 @@ class LinkedSeq:
     # Exception: MemoryError
     #   Indicates insufficient memory for the new sequence.
     ##/   
+    @staticmethod
     def catenation(s1, s2):
 
         try:
 
-            "This function is not completed..."
+            #
+            s1_copy = s1.head.listCopy()
 
-        except:
+            #
+            s2_copy = s2.head.listCopy()
+
+            #
+            linked_sequence = LinkedSeq()
+
+            #
+            linked_sequence.addAll(s1_copy)
+
+            #
+            linked_sequence.addAll(s2_copy)
+
+        except TypeError:
             print("addend is None.")
+
+        except MemoryError:
             print("Insufficient memory to increase the size of this sequence.")
 
     ###
@@ -214,11 +307,21 @@ class LinkedSeq:
     ##/
     def getCurrent(self):
 
+        #
         try:
-            "This function is not completed..."
-        except:
+
+            #
+            if self.isCurrent():
+                #
+                return self.currentElement
+
+        #
+        except TypeError:
+
+            #
             print("Error: There is no current element, so getCurrent may not be called.")
 
+        #
         return None
 
     ###
@@ -230,7 +333,8 @@ class LinkedSeq:
     #   True (there is a current element) or False (there is no current element at the moment)
     ##/
     def isCurrent(self):
-        "This function is not completed..."
+        # If current element is not None, return True
+        return self.currentElement is not None
 
     ###
     # Remove the current element from this sequence.
@@ -248,12 +352,19 @@ class LinkedSeq:
     ##/
     def removeCurrent(self):
 
+        #
         try:
 
-            "This function is not completed..."
+            #
+            if self.isCurrent():
+                #
+                self.currentElement = self.currentElement.getLink()
 
-        except:
+        #
+        except TypeError as e:
 
+            # Debug
+            print(e)
             print("There is no current element, so removeCurrent may not be called.")
 
     ###
@@ -263,7 +374,7 @@ class LinkedSeq:
     #   the number of elements in this sequence
     ##/ 
     def size(self):
-        "This function is not completed..."
+        return self.head.listLength(self.head)
 
     ###
     # Set the current element at the front of this sequence.
@@ -274,7 +385,7 @@ class LinkedSeq:
     #   element).
     ##/ 
     def start(self):
-        "This function is not completed..."
+        self.head = self.currentElement
 
     ###
     # Prints the target sequence to the terminal.

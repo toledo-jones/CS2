@@ -343,7 +343,7 @@ class Node:
         # Start count
         index = 1
 
-        # While the cursor points to something (not None)
+        # While the index is less than specified position
         while index < position:
 
             # Increment position counter
