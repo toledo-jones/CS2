@@ -37,7 +37,8 @@ class PostfixDouble:
             print("The postfix can not be less than 1")
 
         else:
-            end = False
+            end_of_data = False
+            while not end_of_data:
 
 
 
@@ -61,7 +62,6 @@ class PostfixDouble:
     def power(a, b):
         return PostfixDouble.powerSuper(a, b)
 
-
     def powerSuper(a, b):
 
         if a == 0 and b == 0:
@@ -79,7 +79,6 @@ class PostfixDouble:
         else:
 
             return a ** b
-
 
     def negative(a):
         return -a

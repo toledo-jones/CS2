@@ -29,15 +29,15 @@ __version__ = "1.01"
 ##############################################################################/
 class Node:
 
-    # def __str__(self):
-    #     """
-    #     Override the default string representation to give more information about this node and it's links
-    #
-    #     I used this when modifying this class for quick access to the node and it's links but it certainly does
-    #     make the debugger less useful and more cluttered. Use with caution.
-    #
-    #     """
-    #     return f"|{self.__repr__()}(data = {str(self.data)})|\nV\n{self.link}"
+    def __str__(self):
+        """
+        Override the default string representation to give more information about this node and it's links
+
+        I used this when modifying this class for quick access to the node and it's links but it certainly does
+        make the debugger less useful and more cluttered. Use with caution.
+
+        """
+        return f"|{self.__repr__()}(data = {str(self.data)})|\nV\n{self.link}"
 
     ## Invariant of the Node class:
     ##   1. The node's double data is in the instance variable data.
