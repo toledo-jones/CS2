@@ -38,7 +38,21 @@ class PostfixDouble:
 
         else:
             end_of_data = False
+            index = 0
             while not end_of_data:
+                char = self.postfix[index]
+
+                if char == '+':
+                    pass
+
+                elif char == '-':
+                    pass
+
+                elif char == '/':
+                    pass
+
+                elif char == '*':
+                    pass
 
 
 
