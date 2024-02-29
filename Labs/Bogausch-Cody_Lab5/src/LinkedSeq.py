@@ -42,7 +42,6 @@ class LinkedSeq:
 
     Ran out of time, unfortunately.
 
-
     """
 
     ###
