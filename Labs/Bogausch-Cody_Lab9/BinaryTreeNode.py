@@ -77,7 +77,10 @@ class BinaryTreeNode:
     #
     ###      
     def getLeftmostData(self):
-        return self.getLeft().getData()
+        if self.getLeft() is not None:
+            self.getLeft().getLeftmostData()
+        else:
+            return self.getData()
 
     ### 
     # Description:
@@ -97,7 +100,10 @@ class BinaryTreeNode:
     #
     ###      
     def getRightmostData(self):
-        return self.getRight().getData()
+        if self.getRight() is not None:
+            self.getRight().getRightmostData()
+        else:
+            return self.getData()
 
     ### 
     # Description:
@@ -115,13 +121,11 @@ class BinaryTreeNode:
 
         # Check left side of sub-tree
         if node.getLeft() is not None:
-
             # Recurse down into left tree, extracting the height
             left_height = node.getLeft().height()
 
         # Check right side of the sub-tree
         if node.getRight() is not None:
-
             # Recurse down into right tree, extracting the height
             right_height = node.getRight().height()
 
@@ -254,7 +258,7 @@ class BinaryTreeNode:
     #
     ### 
     def removeLeftmost(self):
-        self.removeLeftmost_helper()
+        BinaryTreeNode.removeLeftmost_helper(self)
 
     ###
     # Description: 
@@ -268,6 +272,7 @@ class BinaryTreeNode:
     #
     ###     
 
+    @staticmethod
     def removeLeftmost_helper(cursor):
         pointer = cursor.getLeft().getLeft()
 
@@ -279,7 +284,6 @@ class BinaryTreeNode:
 
             BinaryTreeNode.removeLeftmost_helper(cursor.getLeft())
 
-
     ###
     # Description:      
     # REMOVE the RIGHTMOST Node of the tree below this node.
@@ -290,7 +294,7 @@ class BinaryTreeNode:
     #
     ###     
     def removeRightmost(self):
-        "This function is not completed..."
+        BinaryTreeNode.removeRightmost_helper(self)
 
     ###
     # Description:     
@@ -300,8 +304,16 @@ class BinaryTreeNode:
     #   node (since that one node has now been removed).
     # Helper function for removeRightmost
     ###
+    @staticmethod
     def removeRightmost_helper(cursor):
-        "This function is not completed..."
+        pointer = cursor.getRight().getRight()
+
+        if pointer is None:
+
+            cursor.setRight(None)
+
+        else:
+            BinaryTreeNode.removeLeftmost_helper(cursor.getRight())
 
     # Description: 
     # WRITE or change data of the node
@@ -338,8 +350,24 @@ class BinaryTreeNode:
     #   ???
     #
     ###
+    @staticmethod
     def treeCopy(source):
-        "This function is not completed..."
+        left_copy = None
+
+        right_copy = None
+
+        left = source.getLeft()
+
+        right = source.getRight()
+
+        if left is not None:
+            left_copy = BinaryTreeNode.treeCopy(left)
+
+        if right is not None:
+            right_copy = BinaryTreeNode.treeCopy(right)
+
+        return BinaryTreeNode(source.getData(), left_copy, right_copy)
+
 
     ###
     # Description: 
@@ -348,5 +376,21 @@ class BinaryTreeNode:
     #   ???
     #
     ###     
+    @staticmethod
     def treeSize(root):
-        "This function is not completed..."
+        left_size = 0
+
+        right_size = 0
+
+        left = root.getLeft()
+
+        right = root.getRight()
+
+        if left is not None:
+            left_size = BinaryTreeNode.treeSize(left)
+
+        if right is not None:
+            right_size = BinaryTreeNode.treeSize(right)
+
+        return left_size + right_size + 1
+
