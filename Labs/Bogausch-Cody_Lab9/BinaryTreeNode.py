@@ -63,14 +63,26 @@ class BinaryTreeNode:
     #   initialRight - right link/child node
     #
     # Returns:
-    #   None
+    #   BinaryTreeNode() object
+    #
     ###
     def __init__(self, initialData=None, initialLeft=None, initialRight=None):
 
         # Initialize attributes
-        self.data = initialData
-        self.left = initialLeft
-        self.right = initialRight
+        self.data: any = initialData
+
+        # Type hints in python do not 'force' data to be of a specific type.
+        # It is just a convention to demonstrate how the code is expected to be used
+        # They also help in catching bugs early, before execution, as the linter will warn me when I try to set
+        # a variable hinted as a type to an object of the incorrect type
+
+        # These statements are completely ignored by the python interpreter
+        self.left: BinaryTreeNode = initialLeft
+        # Per your request, I have left them out of this lab beyond this note.
+
+        self.right: bool = initialRight
+        #           ^ Incorrect type hint
+        # Regardless, these will both be set to BinaryTreeNodes and python will not mind that I hinted one as bool
 
     ### 
     # Description:
@@ -183,7 +195,6 @@ class BinaryTreeNode:
 
         # Check left side of sub-tree
         if node.getLeft() is not None:
-
             # Recurse down into left tree, extracting the height
             left_height = node.getLeft().height()
 
@@ -230,13 +241,11 @@ class BinaryTreeNode:
 
         # If there is a left node
         if self.getLeft() is not None:
-
             # Recurse
             self.getLeft().preorderPrint()
 
         # If there is a right node:
         if self.getRight() is not None:
-
             # Recurse
             self.getRight().preorderPrint()
 
@@ -256,7 +265,6 @@ class BinaryTreeNode:
 
         # If there is a left node:
         if self.getLeft() is not None:
-
             # Recurse
             self.getLeft().preorderPrint()
 
@@ -265,7 +273,6 @@ class BinaryTreeNode:
 
         # If there is a right node:
         if self.getRight() is not None:
-
             # Recurse
             self.getRight().preorderPrint()
 
@@ -285,13 +292,11 @@ class BinaryTreeNode:
 
         # If there is a left node:
         if self.getLeft() is not None:
-
             # Recurse
             self.getLeft().preorderPrint()
 
         # If there is a right node:
         if self.getRight() is not None:
-
             # Recurse
             self.getRight().preorderPrint()
 
@@ -520,13 +525,11 @@ class BinaryTreeNode:
 
         # There is a left link:
         if left is not None:
-
             # Recurse, assigning left_copy to the return value of this function
             left_copy = BinaryTreeNode.treeCopy(left)
 
         # There is a right link:
         if right is not None:
-
             # Recurse, assigning right_copy to the return value of this function
             right_copy = BinaryTreeNode.treeCopy(right)
 
@@ -557,16 +560,13 @@ class BinaryTreeNode:
 
         # There is a left link:
         if left is not None:
-
             # Recurse, assigning left_size to the output of this function
             left_size = BinaryTreeNode.treeSize(left)
 
         # There is a right link:
         if right is not None:
-
             # Recurse, assigning right_size to the output of this function
             right_size = BinaryTreeNode.treeSize(right)
 
         # Return an int of the above sizes summed + 1 for this node
         return left_size + right_size + 1
-
