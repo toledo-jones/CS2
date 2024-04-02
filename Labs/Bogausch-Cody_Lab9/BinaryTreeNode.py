@@ -77,12 +77,21 @@ class BinaryTreeNode:
         # a variable hinted as a type to an object of the incorrect type
 
         # These statements are completely ignored by the python interpreter
+
         self.left: BinaryTreeNode = initialLeft
         # Per your request, I have left them out of this lab beyond this note.
 
         self.right: bool = initialRight
         #           ^ Incorrect type hint
         # Regardless, these will both be set to BinaryTreeNodes and python will not mind that I hinted one as bool
+
+        # I use statements like this sometimes just to enable the type hint feature
+        # on a variable whose use may have changed throughout the code:
+
+        self.data: int
+
+        # ^ This line will not set or do anything to the self.data attribute it just lets the linter know how I plan
+        # to use self.data
 
     ### 
     # Description:
@@ -525,11 +534,13 @@ class BinaryTreeNode:
 
         # There is a left link:
         if left is not None:
+
             # Recurse, assigning left_copy to the return value of this function
             left_copy = BinaryTreeNode.treeCopy(left)
 
         # There is a right link:
         if right is not None:
+
             # Recurse, assigning right_copy to the return value of this function
             right_copy = BinaryTreeNode.treeCopy(right)
 
@@ -560,11 +571,13 @@ class BinaryTreeNode:
 
         # There is a left link:
         if left is not None:
+
             # Recurse, assigning left_size to the output of this function
             left_size = BinaryTreeNode.treeSize(left)
 
         # There is a right link:
         if right is not None:
+
             # Recurse, assigning right_size to the output of this function
             right_size = BinaryTreeNode.treeSize(right)
 
