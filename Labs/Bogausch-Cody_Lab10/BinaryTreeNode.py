@@ -68,30 +68,10 @@ class BinaryTreeNode:
     ###
     def __init__(self, initialData=None, initialLeft=None, initialRight=None):
 
-        # Initialize attributes
+        # Initialize object attributes
         self.data: any = initialData
-
-        # Type hints in python do not 'force' data to be of a specific type.
-        # It is just a convention to demonstrate how the code is expected to be used
-        # They also help in catching bugs early, before execution, as the linter will warn me when I try to set
-        # a variable hinted as a type to an object of the incorrect type
-
-        # These statements are completely ignored by the python interpreter
-
         self.left: BinaryTreeNode = initialLeft
-        # Per your request, I have left them out of this lab beyond this note.
-
-        self.right: bool = initialRight
-        #           ^ Incorrect type hint
-        # Regardless, these will both be set to BinaryTreeNodes and python will not mind that I hinted one as bool
-
-        # I use statements like this sometimes just to enable the type hint feature
-        # on a variable whose use may have changed throughout the code:
-
-        self.data: int
-
-        # ^ This line will not set or do anything to the self.data attribute it just lets the linter know how I plan
-        # to use self.data
+        self.right: BinaryTreeNode = initialRight
 
     ### 
     # Description:
@@ -137,7 +117,7 @@ class BinaryTreeNode:
         if self.getLeft() is not None:
 
             # Can go deeper, recurse:
-            self.getLeft().getLeftmostData()
+            return self.getLeft().getLeftmostData()
 
         # This node is the deepest left:
         else:
@@ -175,7 +155,7 @@ class BinaryTreeNode:
         if self.getRight() is not None:
 
             # Can go deeper, recurse:
-            self.getRight().getRightmostData()
+            return self.getRight().getRightmostData()
 
         # This node is the deepest right:
         else:
@@ -195,7 +175,6 @@ class BinaryTreeNode:
     # Returns:
     #   height - int total height of the highest node structure in the tree
     ###
-    @staticmethod
     def height(node):
 
         # Initialize count variables (?)
@@ -204,11 +183,13 @@ class BinaryTreeNode:
 
         # Check left side of sub-tree
         if node.getLeft() is not None:
+
             # Recurse down into left tree, extracting the height
             left_height = node.getLeft().height()
 
         # Check right side of the sub-tree
         if node.getRight() is not None:
+
             # Recurse down into right tree, extracting the height
             right_height = node.getRight().height()
 
@@ -274,16 +255,18 @@ class BinaryTreeNode:
 
         # If there is a left node:
         if self.getLeft() is not None:
+
             # Recurse
-            self.getLeft().preorderPrint()
+            self.getLeft().inorderPrint()
 
         # In order print
         print(f"{self.data} ")
 
         # If there is a right node:
         if self.getRight() is not None:
+
             # Recurse
-            self.getRight().preorderPrint()
+            self.getRight().inorderPrint()
 
     ### 
     # Description:
@@ -301,13 +284,15 @@ class BinaryTreeNode:
 
         # If there is a left node:
         if self.getLeft() is not None:
+
             # Recurse
-            self.getLeft().preorderPrint()
+            self.getLeft().postorderPrint()
 
         # If there is a right node:
         if self.getRight() is not None:
+
             # Recurse
-            self.getRight().preorderPrint()
+            self.getRight().postorderPrint()
 
         # Post order print
         print(f"{self.data} ")
@@ -401,7 +386,6 @@ class BinaryTreeNode:
     #   None
     #
     ###
-    @staticmethod
     def removeLeftmost_helper(cursor):
 
         # Pointer to move between nodes. Looks down two levels.
@@ -452,7 +436,6 @@ class BinaryTreeNode:
     #   None
     #
     ###
-    @staticmethod
     def removeRightmost_helper(cursor):
 
         # Pointer to move between nodes. Looks down two levels.
@@ -521,7 +504,6 @@ class BinaryTreeNode:
     #   BinaryTreeNode() root of copy
     #
     ###
-    @staticmethod
     def treeCopy(source):
 
         # Initialize copies for each side of the node tree
@@ -558,7 +540,6 @@ class BinaryTreeNode:
     #   int - total size of tree
     #
     ###
-    @staticmethod
     def treeSize(root):
 
         # Initialize size values for each side of the node tree
