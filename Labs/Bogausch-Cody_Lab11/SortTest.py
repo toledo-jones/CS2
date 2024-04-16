@@ -35,7 +35,10 @@ import copy
 from Sorting import Sorting
 
 
-def timed_test(algorithm: Sorting, *args) -> None:
+def timed_test(
+        algorithm: staticmethod,
+        *args
+) -> None:
     """
     Execute an arbitrary sorting algorithm then calculate and display the time elapsed during the sort
     @param algorithm: Type of sorting algorithm from the Sorting class
@@ -51,14 +54,25 @@ def timed_test(algorithm: Sorting, *args) -> None:
     print(f"Time elapsed: {time.time() - start_time}")
 
 
-def create_random_list(size: int) -> list[int]:
-    # Empty container
-    lyst = list()
+def create_random_list(
+        size: int,
+        a: int = 0,
+        b: int = 100,
+) -> list[int]:
+    """
+    Create list of random values of an arbitrary size
+    @param size: number of elements in randomized array
+    @param a: int, lower bound of randomized values inside list
+    @param b: int, upper bound of randomized values inside list
+    @return: list of ints
+    """
+    lyst = list()   # Makes me cringe so much lol
 
     # Iterate over arbitrary size value
     for _ in range(size):
+
         # Append a random value for each index in container
-        lyst.append(random.randint(0, 100))
+        lyst.append(random.randint(a, b))
 
     # return random list
     return lyst
@@ -93,16 +107,46 @@ def main() -> None:
     testList9 = create_random_list(500)
     testList10 = create_random_list(1000)
 
+
+
     # 3) Sort your 10 arrays,
     # and use the time package to calculate the time taken to complete the sorting for the 7 given arrays,
     # and your 3 random arrays.
     # Print the time after each sorting operation is completed.
 
-    print("")
-    timed_test(Sorting.bubbleSort, copy.copy(testList1))
+    # Group test lists into larger list
+    test_lists = [
+        testList1,
+        testList2,
+        testList3,
+        testList4,
+        testList5,
+        testList6,
+        testList7,
+        testList8,
+        testList9,
+        testList10,
+    ]
 
-    print("Selection Sort:")
-    timed_test()
+    # Iterate over each test list
+    for index, test_list in enumerate(test_lists):
+        print("==================================================")
+        print(f"SORTING FOR testList{index+1}")
+
+        print("==================================================")
+        print("Bubble Sort")
+        timed_test(Sorting.bubbleSort, copy.copy(test_list))
+
+        print("==================================================")
+        print("Selection Sort:")
+        timed_test(Sorting.selectionSort, copy.copy(test_list))
+
+        print("==================================================")
+        print("Insertion Sort:")
+        timed_test(Sorting.insertionSort, copy.copy(test_list))
+
+        # print("Merge Sort:")
+        # timed_test(Sorting.mergeSort)
 
 
 if __name__ == '__main__':

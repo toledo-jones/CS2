@@ -46,7 +46,7 @@ class Sorting:
     # -----------------------------------------------------------------
     @staticmethod
     def swap(data, index1, index2):
-        data[index1], data[index2] = index2, index1
+        data[index1], data[index2] = data[index2], data[index1]
 
     # -----------------------------------------------------------------
     #  Description:
@@ -62,6 +62,8 @@ class Sorting:
     @staticmethod
     def selectionSort(data):
 
+        print(data)
+
         for i in range(len(data)):
 
             for j in range(len(data)):
@@ -69,6 +71,8 @@ class Sorting:
                 if data[i] > data[j]:
 
                     Sorting.swap(data, i, j)
+
+        print(data)
 
     # -----------------------------------------------------------------
     #  Description:
@@ -81,8 +85,26 @@ class Sorting:
     #  Output:
     #   ???
     # -----------------------------------------------------------------
+    @staticmethod
     def insertionSort(data):
-        "Complete this function, add inline comments, and finish the function description..."
+
+        print(data)
+
+        for i in range(len(data)):
+
+            j = i - 1
+
+            temp = data[i]
+
+            while data[i] < data[j] and j > 0:
+
+                Sorting.swap(data, j, j+1)
+
+                j -= 1
+
+            data[j+1] = temp
+
+        print(data)
 
         # -----------------------------------------------------------------
 
@@ -99,16 +121,17 @@ class Sorting:
     @staticmethod
     def bubbleSort(data):
 
-        # Why this outer loop?
-        for i in range(len(data)-2):
+        print(data)
 
-            for j in range(len(data)-1):
+        for i in range(len(data) - 2):
 
-                if data[j + 1] > data[j]:
+            for j in range(len(data) - 1):
 
-                    Sorting.swap(data, j+1, j)
+                if data[j + 1] < data[j]:
 
+                    Sorting.swap(data, j + 1, j)
 
+        print(data)
     # -----------------------------------------------------------------
     #  Description:
     #   Sorts the specified list of objects using the quick sort
