@@ -14,8 +14,9 @@
 # *****************************************************************************************************
 #
 # Functions:
-#   ???
-#   (FILL IN THE DETAILS)
+#   main
+#   timed_test
+#   create_random_list
 #
 #
 #
@@ -44,6 +45,7 @@ def timed_test(
     @param algorithm: Type of sorting algorithm from the Sorting class
     @return: None
     """
+    print(args[0])
 
     start_time = time.time()
 
@@ -53,6 +55,8 @@ def timed_test(
 
     print(f"Time elapsed: {time.time() - start_time}")
 
+    print(args[0])
+
 
 def create_random_list(
         size: int,
@@ -61,16 +65,16 @@ def create_random_list(
 ) -> list[int]:
     """
     Create list of random values of an arbitrary size
+
     @param size: number of elements in randomized array
     @param a: int, lower bound of randomized values inside list
     @param b: int, upper bound of randomized values inside list
     @return: list of ints
     """
-    lyst = list()   # Makes me cringe so much lol
+    lyst = list()  # Makes me cringe so much
 
     # Iterate over arbitrary size value
     for _ in range(size):
-
         # Append a random value for each index in container
         lyst.append(random.randint(a, b))
 
@@ -81,6 +85,10 @@ def create_random_list(
 def main() -> None:
     """
     Tester for Sorting.py
+
+    Some static test lists and dynamic test lists are created, copied and sorted.
+    The time it takes for each sorting algorithm to complete is displayed to the user
+
     @return: None
     """
     # 1) Print headers for each algorithm,
@@ -107,8 +115,6 @@ def main() -> None:
     testList9 = create_random_list(500)
     testList10 = create_random_list(1000)
 
-
-
     # 3) Sort your 10 arrays,
     # and use the time package to calculate the time taken to complete the sorting for the 7 given arrays,
     # and your 3 random arrays.
@@ -128,25 +134,40 @@ def main() -> None:
         testList10,
     ]
 
+    print(testList1)
+
+    Sorting.insertionSort(testList1)
+
+    print(testList1)
+
     # Iterate over each test list
-    for index, test_list in enumerate(test_lists):
-        print("==================================================")
-        print(f"SORTING FOR testList{index+1}")
-
-        print("==================================================")
-        print("Bubble Sort")
-        timed_test(Sorting.bubbleSort, copy.copy(test_list))
-
-        print("==================================================")
-        print("Selection Sort:")
-        timed_test(Sorting.selectionSort, copy.copy(test_list))
-
-        print("==================================================")
-        print("Insertion Sort:")
-        timed_test(Sorting.insertionSort, copy.copy(test_list))
-
-        # print("Merge Sort:")
-        # timed_test(Sorting.mergeSort)
+    # for index, test_list in enumerate(test_lists):
+    #     # Formatting, header for each list:
+    #     print("==================================================")
+    #     print("*--*--*--*---*--*--*--*--*--*--*--*--*---*--*--*--*--*--*--*---*--*--*--*--*--*--*--*--*---*--*--*")
+    #     print(f"                        Sorting.py for testList{index + 1}")
+    #     print("*--*--*--*---*--*--*--*--*--*--*--*--*---*--*--*--*--*--*--*---*--*--*--*--*--*--*--*--*---*--*--*")
+    #
+    #     # Formatting for each algorithm:
+    #     print("==================================================")
+    #     print("Bubble Sort")
+    #     timed_test(Sorting.bubbleSort, copy.copy(test_list))
+    #
+    #     print("==================================================")
+    #     print("Selection Sort:")
+    #     timed_test(Sorting.selectionSort, copy.copy(test_list))
+    #
+    #     print("==================================================")
+    #     print("Insertion Sort:")
+    #     timed_test(Sorting.insertionSort, copy.copy(test_list))
+    #
+    #     print("==================================================")
+    #     print("Quick Sort:")
+    #     timed_test(Sorting.quickSort, copy.copy(test_list), 0, len(test_list) - 1)
+    #
+    #     print("==================================================")
+    #     print("Merge Sort:")
+    #     timed_test(Sorting.mergeSort, copy.copy(test_list), 0, len(test_list) - 1)
 
 
 if __name__ == '__main__':
