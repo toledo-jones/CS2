@@ -1,46 +1,54 @@
-# All of the code you create will be submitted using Lab 5 submission link.
+#!/usr/bin/env python3
+# coding: utf-8
 
-# Compress all of your files into a .zip file, and use the following naming convention:
-
-# Firstname-Lastname_Lab{number}.zip
-
-# In this exercise, you will be learning and using basic linked list concepts. There are three files given in this lab:
-
-# Node.py – which contains the class for the basic node structure.
-
-# LinkedSeq.py – a class which extends the functionality of Node to a collection of elements
-
-# FloatLinkedSeqDemonstration.py – a tester file for LinkedSeq.py.
-
-# We will be working on Node.py together in class, through a process that is colloquially called “walking through the code”. This is a process that is commonly used in code reviews.
-
-# In addition to the files that have been given, create a tester file for the Node.py class. The tester file must include code that does the following:
+__author__ = "Cody Bogausch"
+__version__ = "Pre_Alpha_0.01_Dev"
 
 from Node import Node
 
-# 1) Creates an empty node, and a node with an integer.
-empty_node = Node(None)
-print(empty_node)
-int_node = Node(0)
-print(int_node)
 
+def print_under_seperator(printable: any) -> None:
+    """
+    Converts parameter to a string and prints it to the console with a seperator above it
+
+    @param printable: any object to be converted into a string and printed to the console
+    @return None
+    """
+
+    def seperator():
+        print("---------------------------------------------------------------")
+
+    seperator()
+    print(str(printable))
+
+
+# 1) Creates an empty node
+print_under_seperator("(1a) Create an empty node:")
+empty = Node(None)
+print_under_seperator(empty)
+
+# and a node with an integer.
+print_under_seperator("(1b) Create a node with an integer:")
+original = Node(-10)
+print_under_seperator(original)
 
 # 2) Adds a node after the node with the integer, to make a short sequence. (Use the number 13).
-int_node.addNodeAfter(13)
-print(int_node)
-
+print_under_seperator("(2) Add a node (13) after the node with the integer: ")
+original.addNodeAfter(13)
+print_under_seperator(original)
 
 # 3) Adds a node after the sequence head, between the two existing nodes. (Use the number 42).
-int_node.addNodeAfter(42)
-print("Add a node with 42 to our previous node")
-print(int_node)
+print_under_seperator("(3) Add a node (42) to the sequence head:")
+original.addNodeAfter(42)
+print_under_seperator(original)
 
-# 4) Copies the sequence.
-copy = int_node.listCopy()
-print("Printing Copy...")
-int_node.data = 1
-print(f"First List: {int_node}")
-print(f"Copy: {copy}")
+# 4) Copy the sequence.
+print_under_seperator("(4) Copy the sequence:")
+copy = original.listCopy()
+print_under_seperator("Original:")
+print_under_seperator(original)
+print_under_seperator("Copy:")
+print_under_seperator(copy)
 
 
 # 5) Adds the copy of the sequence onto the original.
@@ -48,44 +56,71 @@ def get_last_node_in_sequence(head: Node) -> Node:
     """
     Retrieve the last node in the sequence of nodes starting from the "head". 
     
-    :param: head: Node to begin searching down into
+    :param head: Node to begin searching down into
     
-    :returns: Node with a link of None
+    :return: Node with a link of None
     """
     # Cursor will point to different potential nodes until it gets to the end
     cursor = head
-    
+
     # Search recursively until we reach None
     while cursor.link is not None:
-        
         # Cursor becomes the next link in the sequence
         cursor = cursor.getLink()
-        print(f"cursor points to: {cursor}")
-    
 
     return cursor
 
-tail = get_last_node_in_sequence(int_node)
-print(f"Tail: {tail}")
-print("Adding copy to original...")
-tail.setLink(copy)
-print(int_node)
 
-# 6) Create a list copy with a tail, attach it onto the original.
+print_under_seperator("(5) Add a copy of the sequence onto the end of the original:")
+tail = get_last_node_in_sequence(original)
+tail.setLink(copy)
+print_under_seperator(original)
+
+# 6) Create a list copy with a tail and attach it onto the original.
+print_under_seperator("(6) Create a list copy with a tail and attach it to the original")
+copy = original.listCopyWithTail()
+print_under_seperator("Copy head:")
+print_under_seperator(copy[0])
+print_under_seperator("Copy Tail:")
+print_under_seperator(copy[1])
+tail = get_last_node_in_sequence(original)
+tail.setLink(copy[0])
+print_under_seperator("Add copy head to the original:")
+print_under_seperator(original)
 
 # 7) Get the length of the original sequence.
+length = original.listLength(original)
+print_under_seperator("(7) Get the length of the original sequence")
+print_under_seperator("Original:")
+print_under_seperator(original)
+print_under_seperator(f"Length: {length}")
 
 # 8) Get the first half of the list.
+print_under_seperator("(8) Get the first half of the list:")
+mid_point = original.listPosition(length // 2)
+list_part = original.listPart(original, mid_point)
+print_under_seperator("First half:")
+print_under_seperator("Head:")
+print_under_seperator(list_part[0])
+print_under_seperator("Mid_Point:")
+print_under_seperator(list_part[1])
 
 # 9) Get the second node in the list.
+print_under_seperator("(9) Get the second node in the list:")
+second_node = original.listPosition(2)
+print_under_seperator(second_node)
 
 # 10) Get the location of the first item with the contents (42).
+print_under_seperator("(10) Get the location of the first item with the contents 42:")
+searched_node = original.listSearch(42)
+print_under_seperator(searched_node)
 
 # 11) Remove the node after the first item with the contents (42).
+print_under_seperator("(11) Remove the node after the first item with the contents 42:")
+searched_node.removeNodeAfter()
+print_under_seperator(original)
 
 # 12) Change the first item in the list so that it contains the number (73).
-
-# Separate each item on the list with print statements (which describe the step), and print out the results of each step to the terminal.
-
-# You can do an early pre-submission which will be reviewed with your professor’s tester file, and by the end of the weekend, I will get back to you with comments. As a suggestion, if you want to check your code in this fashion, submit all of your work at the end of class. (This mimics one form of development-test organization, where development usually does not directly see test files.)
-
+print_under_seperator("(12) Change the first item in the list so that it contains the number 73:")
+original.setData(73)
+print_under_seperator(original)
