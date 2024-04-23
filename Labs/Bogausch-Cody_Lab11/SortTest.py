@@ -37,7 +37,7 @@ from Sorting import Sorting
 
 
 def timed_test(
-        algorithm: staticmethod,
+        algorithm,
         *args
 ) -> None:
     """
@@ -62,7 +62,7 @@ def create_random_list(
         size: int,
         a: int = 0,
         b: int = 100,
-) -> list[int]:
+) -> list:
     """
     Create list of random values of an arbitrary size
 
@@ -141,33 +141,33 @@ def main() -> None:
     print(testList1)
 
     # Iterate over each test list
-    # for index, test_list in enumerate(test_lists):
-    #     # Formatting, header for each list:
-    #     print("==================================================")
-    #     print("*--*--*--*---*--*--*--*--*--*--*--*--*---*--*--*--*--*--*--*---*--*--*--*--*--*--*--*--*---*--*--*")
-    #     print(f"                        Sorting.py for testList{index + 1}")
-    #     print("*--*--*--*---*--*--*--*--*--*--*--*--*---*--*--*--*--*--*--*---*--*--*--*--*--*--*--*--*---*--*--*")
-    #
-    #     # Formatting for each algorithm:
-    #     print("==================================================")
-    #     print("Bubble Sort")
-    #     timed_test(Sorting.bubbleSort, copy.copy(test_list))
-    #
-    #     print("==================================================")
-    #     print("Selection Sort:")
-    #     timed_test(Sorting.selectionSort, copy.copy(test_list))
-    #
-    #     print("==================================================")
-    #     print("Insertion Sort:")
-    #     timed_test(Sorting.insertionSort, copy.copy(test_list))
-    #
-    #     print("==================================================")
-    #     print("Quick Sort:")
-    #     timed_test(Sorting.quickSort, copy.copy(test_list), 0, len(test_list) - 1)
-    #
-    #     print("==================================================")
-    #     print("Merge Sort:")
-    #     timed_test(Sorting.mergeSort, copy.copy(test_list), 0, len(test_list) - 1)
+    for index, test_list in enumerate(test_lists):
+        # Formatting, header for each list:
+        print("==================================================")
+        print("*--*--*--*---*--*--*--*--*--*--*--*--*---*--*--*--*--*--*--*---*--*--*--*--*--*--*--*--*---*--*--*")
+        print(f"                        Sorting.py for testList{index + 1}")
+        print("*--*--*--*---*--*--*--*--*--*--*--*--*---*--*--*--*--*--*--*---*--*--*--*--*--*--*--*--*---*--*--*")
+
+        # Formatting for each algorithm:
+        print("==================================================")
+        print("Bubble Sort")
+        timed_test(Sorting.bubbleSort, copy.copy(test_list))
+
+        print("==================================================")
+        print("Selection Sort:")
+        timed_test(Sorting.selectionSort, copy.copy(test_list))
+
+        print("==================================================")
+        print("Insertion Sort:")
+        timed_test(Sorting.insertionSort, copy.copy(test_list))
+
+        print("==================================================")
+        print("Quick Sort:")
+        timed_test(Sorting.quickSort, copy.copy(test_list), 0, len(test_list) - 1)
+
+        print("==================================================")
+        print("Merge Sort:")
+        timed_test(Sorting.mergeSort, copy.copy(test_list), 0, len(test_list) - 1)
 
 
 if __name__ == '__main__':
