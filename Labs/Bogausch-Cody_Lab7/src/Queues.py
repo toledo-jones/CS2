@@ -168,16 +168,13 @@ class Queue:
         cursor = self.head
 
         # Iterate through queue
-        while cursor.link is not None:
+        while cursor is not None:
 
             # Append current cursor data to string representation
             string_representation += " " + str(cursor.data)
 
             # Move the cursor
             cursor = cursor.link
-
-        # Add final Node
-        string_representation += " " + str(cursor.data)
 
         # Return string with leading spaces removed
         return string_representation.strip()
